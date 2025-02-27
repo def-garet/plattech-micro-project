@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 10 Activity</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    {% comment %} test {% endcomment %}
+    <div class="container">
+        <h1>Picker</h1>
+        <div class="inputGroup">
+            <label for="city">Select a City:</label>
+            <select name="city" id="city">
+                <option value="" disabled selected>Select a City</option>
+                <option value="Iloilo City">Iloilo City</option>
+                <option value="Guimaras">Guimaras</option>
+                <option value="Roxas">Roxas</option>
+                <option value="Antique">Antique</option>
+            </select>
+        </div>
+        <br>
+        <div class="inputGroup">
+            <label for="date">Select a Date:</label>
+            <input type="date" name="date" id="date">
+        </div>
+        <br><br>
+    
+        <div class="result">
+            <p><strong>Selected City: </strong> <span id="selectedCity">None</span></p>
+            <p><strong>Selected Date: </strong> <span id="selectedDate">None</span></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

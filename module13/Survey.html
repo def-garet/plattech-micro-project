@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #EEE2DC;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            color: #123C69;
+        }
+        
+        h1 {
+            color: #AC3B61;
+            margin-top: 30px;
+            font-size: 36px;
+            letter-spacing: 2px;
+        }
+
+        form {
+            background: #FFFFFF;
+            width: 60%;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid #BAB2B5;
+        }
+
+        fieldset {
+            border: 2px solid #EDC7B7;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #F9F9F9;
+            border-radius: 8px;
+        }
+
+        legend {
+            font-weight: bold;
+            font-size: 18px;
+            color: #123C69;
+            margin-bottom: 10px;
+        }
+
+        label {
+            margin-right: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            display: inline-block;
+            color: #123C69;
+        }
+
+        /* Hide default radio button */
+        input[type="radio"] {
+            display: none;
+        }
+
+        /* Custom radio button */
+        input[type="radio"] + label {
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+        }
+
+        input[type="radio"] + label::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background-color: #BAB2B5;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        input[type="radio"]:checked + label::before {
+            background-color: #AC3B61;  /* Change color on selection */
+            border: 2px solid #AC3B61;
+        }
+
+        input[type="radio"]:checked + label::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: white;
+        }
+
+        input[type="submit"] {
+            background: #AC3B61;
+            color: #FFF;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background: #123C69;
+        }
+
+        #score {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #123C69;
+        }
+
+        @media (max-width: 768px) {
+            form {
+                width: 80%;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Survey Form</h1>
+
+    <form id="surveyForm" action="#" method="post">
+        <fieldset>
+            <legend>Question 1: How likely are you to recommend our service?</legend>
+            <input type="radio" id="q1-1" name="q1" value="1" onclick="calculateScore()">
+            <label for="q1-1">1</label>
+            <input type="radio" id="q1-2" name="q1" value="2" onclick="calculateScore()">
+            <label for="q1-2">2</label>
+            <input type="radio" id="q1-3" name="q1" value="3" onclick="calculateScore()">
+            <label for="q1-3">3</label>
+            <input type="radio" id="q1-4" name="q1" value="4" onclick="calculateScore()">
+            <label for="q1-4">4</label>
+            <input type="radio" id="q1-5" name="q1" value="5" onclick="calculateScore()">
+            <label for="q1-5">5</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Question 2: How satisfied are you with our website's usability?</legend>
+            <input type="radio" id="q2-1" name="q2" value="1" onclick="calculateScore()">
+            <label for="q2-1">1</label>
+            <input type="radio" id="q2-2" name="q2" value="2" onclick="calculateScore()">
+            <label for="q2-2">2</label>
+            <input type="radio" id="q2-3" name="q2" value="3" onclick="calculateScore()">
+            <label for="q2-3">3</label>
+            <input type="radio" id="q2-4" name="q2" value="4" onclick="calculateScore()">
+            <label for="q2-4">4</label>
+            <input type="radio" id="q2-5" name="q2" value="5" onclick="calculateScore()">
+            <label for="q2-5">5</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Question 3: How well did our support team address your concerns?</legend>
+            <input type="radio" id="q3-1" name="q3" value="1" onclick="calculateScore()">
+            <label for="q3-1">1</label>
+            <input type="radio" id="q3-2" name="q3" value="2" onclick="calculateScore()">
+            <label for="q3-2">2</label>
+            <input type="radio" id="q3-3" name="q3" value="3" onclick="calculateScore()">
+            <label for="q3-3">3</label>
+            <input type="radio" id="q3-4" name="q3" value="4" onclick="calculateScore()">
+            <label for="q3-4">4</label>
+            <input type="radio" id="q3-5" name="q3" value="5" onclick="calculateScore()">
+            <label for="q3-5">5</label>
+        </fieldset>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="score"></div>
+
+    <script>
+        function calculateScore() {
+            var score = 0;
+            var form = document.getElementById("surveyForm");
+
+            for (var i = 0; i < form.elements.length; i++) {
+                if (form.elements[i].type === "radio" && form.elements[i].checked) {
+                    score += parseInt(form.elements[i].value);
+                }
+            }
+
+            document.getElementById("score").textContent = "Your Score: " + score;
+        }
+    </script>
+
+</body>
+</html>

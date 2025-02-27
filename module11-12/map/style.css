@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(135deg, #0B0C10, #1F2833);
+    color: #C5C6C7;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    animation: backgroundGlow 5s infinite alternate;
+}
+
+.container {
+    text-align: center;
+    background: rgba(31, 40, 51, 0.9);
+    padding: 25px;
+    border-radius: 12px;
+    border: 2px solid #66FCF1;
+    box-shadow: 0 0 20px rgba(102, 252, 241, 0.5);
+    max-width: 700px;
+    width: 90%;
+    backdrop-filter: blur(12px);
+    animation: fadeIn 1s ease-in-out;
+}
+
+h2 {
+    color: #66FCF1;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(102, 252, 241, 0.8);
+    animation: glow 1.5s infinite alternate;
+}
+
+.map-wrapper {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+iframe {
+    width: 100%;
+    max-width: 600px;
+    height: 450px;
+    border: 3px solid #45A29E;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(102, 252, 241, 0.5);
+    transition: 0.3s ease-in-out;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+iframe:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 25px rgba(102, 252, 241, 1);
+}
+
+.fullscreen-btn {
+    margin-top: 20px;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #0B0C10;
+    background: #66FCF1;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(102, 252, 241, 0.8);
+    transition: 0.3s ease-in-out;
+}
+
+.fullscreen-btn:hover {
+    background: #45A29E;
+    box-shadow: 0 0 20px rgba(102, 252, 241, 1);
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px rgba(102, 252, 241, 0.5);
+    }
+    to {
+        text-shadow: 0 0 20px rgba(102, 252, 241, 1);
+    }
+}
+
+@keyframes backgroundGlow {
+    from {
+        background: linear-gradient(135deg, #0B0C10, #1F2833);
+    }
+    to {
+        background: linear-gradient(135deg, #1F2833, #0B0C10);
+    }
+}

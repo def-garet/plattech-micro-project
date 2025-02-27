@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #244855, #874F41);
+    color: #FBE9D0;
+    animation: backgroundAnimation 5s infinite alternate;
+}
+
+.container {
+    text-align: center;
+    background: rgba(36, 72, 85, 0.9);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(228, 72, 51, 0.5);
+    backdrop-filter: blur(12px);
+    max-width: 400px;
+    width: 90%;
+    border: 2px solid #E64833;
+    animation: fadeIn 1s ease-in-out;
+}
+
+h1 {
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: #E64833;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(228, 72, 51, 0.8);
+    animation: glow 1.5s infinite alternate;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 100%;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.inputGroup label {
+    font-size: 16px;
+    color: #FBE9D0;
+    margin-bottom: 5px;
+}
+
+.inputGroup select,
+.inputGroup input[type="date"] {
+    width: 220px;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #E64833;
+    border-radius: 8px;
+    background: #90AEAD;
+    color: #244855;
+    outline: none;
+    transition: 0.3s ease-in-out;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(228, 72, 51, 0.3);
+}
+
+.inputGroup select:hover,
+.inputGroup input[type="date"]:hover {
+    background: #FBE9D0;
+    color: #874F41;
+    transform: scale(1.05);
+}
+
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background: #E64833;
+    color: #FBE9D0;
+    font-weight: bold;
+    box-shadow: 0 0 20px rgba(228, 72, 51, 0.5);
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.futuristic-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #FBE9D0;
+    background: #E64833;
+    border: 2px solid #FBE9D0;
+    border-radius: 8px;
+    cursor: pointer;
+    text-shadow: 0 0 8px rgba(251, 233, 208, 0.8);
+    box-shadow: 0 0 15px rgba(228, 72, 51, 0.5);
+    transition: 0.3s ease-in-out;
+    animation: glowButton 1.5s infinite alternate;
+}
+
+.futuristic-btn:hover {
+    background: #FBE9D0;
+    color: #E64833;
+    box-shadow: 0 0 20px rgba(251, 233, 208, 1);
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px rgba(228, 72, 51, 0.5);
+    }
+    to {
+        text-shadow: 0 0 20px rgba(228, 72, 51, 1);
+    }
+}
+
+@keyframes glowButton {
+    from {
+        box-shadow: 0 0 10px rgba(228, 72, 51, 0.5);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(251, 233, 208, 1);
+    }
+}
+
+@keyframes backgroundAnimation {
+    from {
+        background: linear-gradient(135deg, #244855, #874F41);
+    }
+    to {
+        background: linear-gradient(135deg, #874F41, #244855);
+    }
+}

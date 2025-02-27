@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Reminder App</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color:rgb(36, 66, 124); /* Dark Blue */
+            color: #FFFFFF; /* White font color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #2E9CCA; /* Light Blue */
+            border-radius: 8px;
+            background-color: #29648A; /* Medium Blue */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .title {
+            color: #FFFFFF; /* White font color */
+            margin-bottom: 20px;
+            font-size: 24px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                color: #FFFFFF; /* White font color */
+            }
+            50% {
+                color: #AAABB8; /* Light Grey */
+            }
+            100% {
+                color: #FFFFFF; /* White font color */
+            }
+        }
+
+        form {
+            display: flex;
+            margin-top: 20px;
+            justify-content: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        form input[type="text"] {
+            flex: 1;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #2E9CCA; /* Light Blue */
+            margin-right: 10px;
+            font-size: 16px;
+            background-color:rgb(24, 142, 220); /* Medium Blue */
+            color: #FFFFFF; /* White font color */
+            transition: all 0.3s ease;
+        }
+
+        form input[type="text"]:focus {
+            outline: none;
+            border-color: #AAABB8; /* Light Grey */
+            background-color:rgb(100, 193, 233); /* Light Blue */
+            animation: focusEffect 0.5s ease-in-out;
+        }
+
+        @keyframes focusEffect {
+            0% {
+                box-shadow: 0 0 0 0 rgba(102, 184, 255, 0.5);
+            }
+            100% {
+                box-shadow: 0 0 8px 4px rgba(102, 184, 255, 0.8);
+            }
+        }
+
+        form button {
+            padding: 8px 15px;
+            background-color: #2E9CCA; /* Light Blue */
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #29648A; /* Medium Blue */
+            transform: scale(1.05);
+        }
+
+        .reminder-list {
+            margin-top: 20px;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .reminder-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin-top: 10px;
+            background-color: #29648A; /* Medium Blue */
+            border: 1px solid #2E9CCA; /* Light Blue */
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .reminder-list li:hover {
+            transform: scale(1.05);
+            background-color:rgb(40, 71, 142); /* Darker Blue */
+        }
+
+        .reminder-list li span {
+            flex: 1;
+            margin-right: 10px;
+            color: #FFFFFF; /* White font color */
+        }
+
+        .reminder-list li button {
+            padding: 5px 12px;
+            background-color: #DC3545; /* Red */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .reminder-list li button:hover {
+            background-color: #C82333; /* Darker red */
+            transform: scale(1.1);
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .modal-content {
+            max-width: 400px;
+            padding: 20px;
+            background-color: #252740; /* Dark Blue */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .modal-content h2 {
+            color:rgb(109, 157, 178); /* Light Blue */
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .modal-content button {
+            padding: 10px 20px;
+            background-color: #2E9CCA; /* Light Blue */
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .modal-content button:hover {
+            background-color:rgb(112, 168, 206); /* Medium Blue */
+            transform: scale(1.05);
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="app-root"></div>
+
+    <script type="text/babel">
+        function ReminderForm({ addReminder }) {
+            const [text, setText] = React.useState("");
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                if (text.trim() !== "") {
+                    addReminder(text);
+                    setText("");
+                }
+            };
+
+            return (
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        value={text}
+                        onChange={(e) => setText(e.target.value)}
+                        placeholder="Enter a reminder"
+                    />
+                    <button type="submit">Add Reminder</button>
+                </form>
+            );
+        }
+
+        function ReminderList({ reminders, deleteReminder }) {
+            return (
+                <ul className="reminder-list">
+                    {reminders.map((reminder, index) => (
+                        <li key={index}>
+                            <span>{reminder}</span>
+                            <button onClick={() => deleteReminder(index)}>Delete</button>
+                        </li>
+                    ))}
+                </ul>
+            );
+        }
+
+        function App() {
+            const [reminders, setReminders] = React.useState([]);
+            const [showModal, setShowModal] = React.useState(false);
+            const [currentReminder, setCurrentReminder] = React.useState("");
+
+            const addReminder = (text) => {
+                setReminders([...reminders, text]);
+            };
+
+            const deleteReminder = (index) => {
+                const updatedReminders = [...reminders];
+                updatedReminders.splice(index, 1);
+                setReminders(updatedReminders);
+            };
+
+            React.useEffect(() => {
+                const timer = setInterval(() => {
+                    if (reminders.length > 0) {
+                        setCurrentReminder(reminders[0]);
+                        setShowModal(true);
+                    }
+                }, 5000);
+                return () => clearInterval(timer);
+            }, [reminders]);
+
+            const closeModal = () => {
+                setShowModal(false);
+                setCurrentReminder("");
+            };
+
+            return (
+                <div className="container">
+                    <h1 className="title">Reminder App</h1>
+                    <ReminderForm addReminder={addReminder} />
+                    {reminders.length > 0 ? (
+                        <ReminderList reminders={reminders} deleteReminder={deleteReminder} />
+                    ) : (
+                        <p>No reminders.</p>
+                    )}
+                    {showModal && (
+                        <div className="modal">
+                            <div className="modal-content">
+                                <h2>Reminder</h2>
+                                <p>{currentReminder}</p>
+                                <button onClick={closeModal}>Close</button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById("app-root"));
+    </script>
+</body>
+</html>
