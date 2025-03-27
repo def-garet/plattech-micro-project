@@ -14,7 +14,7 @@ def get_bot_response(user_message):
         return responses["tell me about [place]"]
     else:
         return responses["default"]
-
+    
 
 def main():
     # Step 4
